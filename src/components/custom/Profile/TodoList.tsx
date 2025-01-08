@@ -1,9 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { TodoItem } from "./TodoItem";
-import { todosActions } from "../../redux/reducers/todoSlice";
+import { todosActions } from "../../../redux/reducers/todoSlice";
 import { faker } from "@faker-js/faker";
+import { getTodosByTableId } from "../../../todoHooks";
 
 export const TodoList = () => {
     const todos = useAppSelector(state => state.todos);
@@ -23,12 +24,21 @@ export const TodoList = () => {
     }
 
     useEffect(() => {
-        dispatch(todosActions.setTodos([{
-            id: 1,
-            title: 'Task 1',
-            completed: false,
-            tableId: 1
-        }]));
+        if (activeTable) {
+            getTodosByTableId(activeTable.id)
+            .then((data) => {
+                const todos = data as unknown[];
+
+                const preparedTodos = [...todos.map((td: any) => ({
+                    id: parseInt(td.Id),
+                    title: td.Title,
+                    tableId: td.TableId,
+                    completed: td.Completed
+                }))];
+                
+                dispatch(todosActions.setTodos([...preparedTodos]));
+            });
+        }
     }, [activeTable]);
 
     return (<div className="block border border-black h-full-height-with-paddings pt-5 overflow-y-auto px-3">

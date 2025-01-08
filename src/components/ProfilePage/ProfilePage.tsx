@@ -1,11 +1,24 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks"
 import { tablesActions } from "../../redux/reducers/tableSlice";
-import { TableColumn } from "../custom/TableColumn";
-import { TodoList } from "../custom/TodoList";
+import { getTables } from "../../todoHooks";
+import { TableColumn } from "../custom/Profile/TableColumn";
+import { TodoList } from "../custom/Profile/TodoList";
 
 export const ProfilePage = () => {
     const { activeTable, tables } = useAppSelector(state => state.tables);
     const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        getTables(1).then((tabls) => {
+            if(tabls) {
+                tabls.forEach(tab => {
+                    dispatch(tablesActions.addTable({ id: tab["Id"], title: tab["Title"]}));
+                });
+            }
+        });
+    }, []);
 
     const handleAddTodo = () => {
         dispatch(tablesActions.addTable({ id: tables.length + 1, title: 'Table' + (tables.length + 1) }));

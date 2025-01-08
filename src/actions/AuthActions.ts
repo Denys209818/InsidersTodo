@@ -1,14 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { loginUser, logoutUser, registerUser } from "../auth";
-
-export interface LoginType {
-    email: string;
-    password: string;
-};
-
-export interface RegisterType extends LoginType {
-    name: string;
-};
+import { RegisterType, LoginType } from "./types/authTypes";
 
 export const RegisterUser = createAsyncThunk('auth/registerAction', 
     async ({email, password, name }: RegisterType) => {

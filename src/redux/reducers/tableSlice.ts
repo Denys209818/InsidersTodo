@@ -1,21 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-export type TodoTable = {
-    id: number;
-    title: string;
-};
-
-export type TodoInfo = {
-    activeTable: TodoTable|null,
-    tables: TodoTable[],
-};
+import { TodoInfo, TodoTable } from "../types/table";
 
 const initialState: TodoInfo = {
     activeTable: null,
-    tables: [{
-        id: 1,
-        title: 'Table 1',
-    }]
+    tables: []
 };
 
 const tablesSlice = createSlice({

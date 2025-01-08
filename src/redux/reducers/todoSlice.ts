@@ -1,12 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-
-export type Todo = {
-    id: number;
-    title: string;
-    completed: boolean;
-    tableId: number;
-};
+import { Todo } from "../types/todo";
 
 const initialState: Todo[] = [];
 

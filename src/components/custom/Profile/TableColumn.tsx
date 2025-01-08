@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
-import { tablesActions, TodoTable } from "../../redux/reducers/tableSlice";
-import { useAppDispatch } from "../../hooks";
+import { tablesActions } from "../../../redux/reducers/tableSlice";
+import { useAppDispatch } from "../../../hooks";
+import { TodoTable } from "../../../redux/types/table";
 
 export type TableColumnType = Omit<TodoTable, 'todos'> & { active: boolean };
 

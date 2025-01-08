@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
-import { useAppDispatch } from "../../hooks";
-import { todosActions } from "../../redux/reducers/todoSlice";
+import { useAppDispatch } from "../../../hooks";
+import { todosActions } from "../../../redux/reducers/todoSlice";
 
 export type TodoItemType = {
     id: number;

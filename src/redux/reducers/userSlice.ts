@@ -1,13 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { LoginUser, LogoutUser, RegisterUser } from "../../actions/AuthActions";
 import { UserData } from "../../auth";
-
-export type UserType = {
-    name: string;
-    token: string;
-    error: string;
-    isLoading: boolean;
-};
+import { UserType } from "../types/user";
 
 const initialState: UserType = {
     name: '',
