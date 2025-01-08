@@ -50,6 +50,12 @@ export const AuthPage = () => {
 
     const { authType } = useParams();
 
+    const { name: userName, token } = useAppSelector(user => user.user);
+
+    if (userName && token) {
+        return <Navigate to={'/profile'} />
+    }
+
     if (authType !== 'register' && authType !== 'login') {
         return <Navigate to={'/auth/login'} />
     }

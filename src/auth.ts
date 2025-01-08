@@ -15,11 +15,15 @@ export const registerUser = async (email: string, password: string, name: string
       await updateProfile(user, {
         displayName: name,
       });
-  
-      return {
+
+      const userData ={
         name,
         token: await user.getIdToken(),
-      };
+      }
+
+      localStorage.setItem('user', JSON.stringify(userData));
+  
+      return userData;
     } catch (error: any) {
         return Promise.reject(JSON.stringify(error));
     }
@@ -30,16 +34,22 @@ export const loginUser = async (email: string, password: string) => {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       
       const user = userCredential.user;
-  
-      return {
+
+      const userData ={
         name: user.displayName,
         token: await user.getIdToken(),
-      };
+      }
+
+      localStorage.setItem('user', JSON.stringify(userData));
+  
+      return userData;
     } catch (error: any) {
         return Promise.reject(JSON.stringify(error));
     }
 };
 
 export const logoutUser = async () => {
+  localStorage.removeItem('user'); 
+
   return signOut(auth);
 }
