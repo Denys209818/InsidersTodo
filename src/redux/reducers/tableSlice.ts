@@ -29,18 +29,26 @@ const tablesSlice = createSlice({
             });
         },
         editTable(state, action: PayloadAction<{id: number, newTitle: string}>) {
-            return {...state, tables: state.tables.map(item => {
-                if (item.id === action.payload.id) {
-                    const newItem = {
-                        ...item,
-                        title: action.payload.newTitle,
-                    };
+            const actTable = {...state.activeTable};
 
-                    return newItem;
-                }
+            if (state.activeTable && state.activeTable.id === action.payload.id) {
+                actTable.title = action.payload.newTitle;
+            }         
 
-                return item;
-            })};
+            return {
+                activeTable: { ...actTable } as TodoTable,
+                tables: state.tables.map(item => {
+                    if (item.id === action.payload.id) {
+                        const newItem = {
+                            ...item,
+                            title: action.payload.newTitle,
+                        };
+
+                        return newItem;
+                    }
+
+                    return item;
+                })};
         },
         setActiveTable(state, action: PayloadAction<number>) {
             const table = state.tables.find(t => t.id === action.payload) || null;
