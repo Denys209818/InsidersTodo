@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkinsiderstodo=self.webpackChunkinsiderstodo||[]).push([[863],{863:(s,e,d)=>{d.r(e),d.d(e,{default:()=>n});var o=d(265),t=d(579);const n=()=>{const{todosId:s}=(0,o.g)();return(0,t.jsxs)(t.Fragment,{children:["Todo Page ",s]})}}}]);
+//# sourceMappingURL=863.8581a857.chunk.js.map
