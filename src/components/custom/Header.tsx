@@ -30,7 +30,7 @@ export const Header = () => {
     `;
 
     return (
-    <header>
+    <header className="sticky top-0">
         <section className="block w-full p-4 bg-[#03001C]">
             <div className="flex justify-between items-center">
                 <h1 className="text-white text-2xl hover:cursor-pointer" onClick={() => navigate('/')}>Todo App</h1>

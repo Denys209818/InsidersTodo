@@ -1,9 +1,13 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import userReducer from './reducers/userSlice';
+import todosReducer from './reducers/todoSlice';
+import tablesReducer from './reducers/tableSlice';
 
 
 export const rootReducer = combineReducers({
-    user: userReducer
+    user: userReducer,
+    todos: todosReducer,
+    tables: tablesReducer,
 });
 
 export const store = configureStore({
