@@ -1,25 +1,23 @@
 {
   "files": {
-    "main.css": "/InsidersTodo/static/css/main.aa825193.css",
-    "main.js": "/InsidersTodo/static/js/main.b9c1d508.js",
-    "static/js/687.a2ae07d1.chunk.js": "/InsidersTodo/static/js/687.a2ae07d1.chunk.js",
+    "main.css": "/InsidersTodo/static/css/main.2426455d.css",
+    "main.js": "/InsidersTodo/static/js/main.2a582e4b.js",
+    "static/js/68.fa4875e6.chunk.js": "/InsidersTodo/static/js/68.fa4875e6.chunk.js",
     "static/css/777.f0e989b1.chunk.css": "/InsidersTodo/static/css/777.f0e989b1.chunk.css",
-    "static/js/777.8f896c64.chunk.js": "/InsidersTodo/static/js/777.8f896c64.chunk.js",
-    "static/js/664.a9397529.chunk.js": "/InsidersTodo/static/js/664.a9397529.chunk.js",
+    "static/js/777.b3e10255.chunk.js": "/InsidersTodo/static/js/777.b3e10255.chunk.js",
+    "static/js/687.964fbbb7.chunk.js": "/InsidersTodo/static/js/687.964fbbb7.chunk.js",
     "static/js/899.7886c315.chunk.js": "/InsidersTodo/static/js/899.7886c315.chunk.js",
-    "static/js/457.304316d6.chunk.js": "/InsidersTodo/static/js/457.304316d6.chunk.js",
     "index.html": "/InsidersTodo/index.html",
-    "main.aa825193.css.map": "/InsidersTodo/static/css/main.aa825193.css.map",
-    "main.b9c1d508.js.map": "/InsidersTodo/static/js/main.b9c1d508.js.map",
-    "687.a2ae07d1.chunk.js.map": "/InsidersTodo/static/js/687.a2ae07d1.chunk.js.map",
+    "main.2426455d.css.map": "/InsidersTodo/static/css/main.2426455d.css.map",
+    "main.2a582e4b.js.map": "/InsidersTodo/static/js/main.2a582e4b.js.map",
+    "68.fa4875e6.chunk.js.map": "/InsidersTodo/static/js/68.fa4875e6.chunk.js.map",
     "777.f0e989b1.chunk.css.map": "/InsidersTodo/static/css/777.f0e989b1.chunk.css.map",
-    "777.8f896c64.chunk.js.map": "/InsidersTodo/static/js/777.8f896c64.chunk.js.map",
-    "664.a9397529.chunk.js.map": "/InsidersTodo/static/js/664.a9397529.chunk.js.map",
-    "899.7886c315.chunk.js.map": "/InsidersTodo/static/js/899.7886c315.chunk.js.map",
-    "457.304316d6.chunk.js.map": "/InsidersTodo/static/js/457.304316d6.chunk.js.map"
+    "777.b3e10255.chunk.js.map": "/InsidersTodo/static/js/777.b3e10255.chunk.js.map",
+    "687.964fbbb7.chunk.js.map": "/InsidersTodo/static/js/687.964fbbb7.chunk.js.map",
+    "899.7886c315.chunk.js.map": "/InsidersTodo/static/js/899.7886c315.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.aa825193.css",
-    "static/js/main.b9c1d508.js"
+    "static/css/main.2426455d.css",
+    "static/js/main.2a582e4b.js"
   ]
 }
