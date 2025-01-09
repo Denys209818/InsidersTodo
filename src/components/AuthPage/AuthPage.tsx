@@ -7,7 +7,6 @@ import { useAppDispatch, useAppSelector } from "../../hooks";
 import { registerSchema } from "./validation/registerValidation";
 import * as Yup from 'yup';
 import { Spinner } from "../custom/Spinner";
-import { userActions } from "../../redux/reducers/userSlice";
 
 export const AuthPage = () => {
     const [name, setName] = useState('');
