@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Todo } from "../types/todo";
+import { LogoutUser } from "../../actions/AuthActions";
 
 const initialState: Todo[] = [];
 
@@ -40,6 +41,11 @@ const todosSlice = createSlice({
         removeTodo(state, action: PayloadAction<number>) {
             return state.filter(x => x.id !== action.payload);
         }
+    },
+    extraReducers(builder) {
+        builder.addCase(LogoutUser.fulfilled, () => {
+            return [];
+        });
     }
 });
 

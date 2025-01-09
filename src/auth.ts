@@ -3,6 +3,7 @@ import { auth } from "./firebase";
 
 export type UserData = {
     name: string;
+    email: string;
     token: string;
 };
 
@@ -18,6 +19,7 @@ export const registerUser = async (email: string, password: string, name: string
 
       const userData ={
         name,
+        email,
         token: await user.getIdToken(),
       }
 
@@ -37,6 +39,7 @@ export const loginUser = async (email: string, password: string) => {
 
       const userData ={
         name: user.displayName,
+        email: user.email,
         token: await user.getIdToken(),
       }
 

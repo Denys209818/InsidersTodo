@@ -1,10 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { TodoItem } from "./TodoItem";
 import { todosActions } from "../../../redux/reducers/todoSlice";
-import { faker } from "@faker-js/faker";
-import { getTodosByTableId } from "../../../todoHooks";
+import { createTodo, getTodosByTableId } from "../../../todoHooks";
 
 export const TodoList = () => {
     const todos = useAppSelector(state => state.todos);
@@ -12,14 +11,22 @@ export const TodoList = () => {
 
     const dispatch = useAppDispatch();
 
+    const [isAdding, setIsAdding] = useState(false);
+
     const onCreateTask = () => {
         if (activeTable) {
-            dispatch(todosActions.addTodo({
-                id: faker.number.int(),
-                title: '',
-                completed: false,
-                tableId: activeTable.id
-            }));
+            setIsAdding(true);
+
+            createTodo(activeTable.id)
+                .then(newTodo => {
+                    dispatch(todosActions.addTodo({
+                        id: newTodo.id,
+                        title: newTodo.title,
+                        completed: newTodo.completed,
+                        tableId: activeTable.id
+                    }));
+                })
+                .finally(() => setIsAdding(false));
         }
     }
 
@@ -30,7 +37,7 @@ export const TodoList = () => {
                 const todos = data as unknown[];
 
                 const preparedTodos = [...todos.map((td: any) => ({
-                    id: parseInt(td.Id),
+                    id: td.Id,
                     title: td.Title,
                     tableId: td.TableId,
                     completed: td.Completed
@@ -40,6 +47,12 @@ export const TodoList = () => {
             });
         }
     }, [activeTable]);
+
+    const onCreateAction = activeTable && activeTable.status === 'ADMIN' ? onCreateTask : undefined;
+
+    if (!activeTable) {
+        return <></>;
+    }
 
     return (<div className="block border border-black h-full-height-with-paddings pt-5 overflow-y-auto px-3">
         <h1 className="text-6xl font-semibold text-center">
@@ -58,8 +71,10 @@ export const TodoList = () => {
                 ease-in-out
                 mt-3
                 mx-auto
+                disabled:bg-slate-400
             `}
-            onClick={onCreateTask}
+            onClick={onCreateAction}
+            disabled={onCreateAction === undefined || isAdding}
             >
             Create a task
         </button>
@@ -71,6 +86,7 @@ export const TodoList = () => {
                     title={td.title}
                     id={td.id}
                     completed={td.completed}
+                    statusTable={activeTable?.status || 'VIEW'}
                 />
             ))}
         </div>

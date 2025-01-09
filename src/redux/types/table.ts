@@ -1,6 +1,7 @@
 export type TodoTable = {
     id: number;
     title: string;
+    status: 'ADMIN'|'VIEW';
 };
 
 export type TodoInfo = {

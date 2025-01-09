@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks";
 import { registerSchema } from "./validation/registerValidation";
 import * as Yup from 'yup';
 import { Spinner } from "../custom/Spinner";
+import { userActions } from "../../redux/reducers/userSlice";
 
 export const AuthPage = () => {
     const [name, setName] = useState('');
@@ -15,31 +16,25 @@ export const AuthPage = () => {
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (registerErrors['name']) {
+    const discardError = (key: string) => {
+        if (registerErrors[key]) {
             setRegisterErrors(prev => ({
                 ...prev,
-                name: []
+                [key]: []
             }));
         }
+    }
+
+    useEffect(() => {
+        discardError('name');
     }, [name]);
 
     useEffect(() => {
-        if (registerErrors['email']) {
-            setRegisterErrors(prev => ({
-                ...prev,
-                email: []
-            }));
-        }
+        discardError('email');
     }, [email]);
 
     useEffect(() => {
-        if (registerErrors['password']) {
-            setRegisterErrors(prev => ({
-                ...prev,
-                password: []
-            }));
-        }
+        discardError('password');
     }, [password]);
 
     const [registerErrors, setRegisterErrors] = useState<{[key: string]: string[]}>({});
@@ -61,12 +56,15 @@ export const AuthPage = () => {
     }
 
     async function Log() {
+        
         await dispatch(LoginUser({
             email: email,
             password: password,
         }));
         
-        navigate('/profile');
+        if (!error) {
+            navigate('/profile');
+        }
     }
 
     async function Reg(data: { name: string, email: string, password: string }) {

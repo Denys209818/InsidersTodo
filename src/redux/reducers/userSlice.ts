@@ -5,6 +5,7 @@ import { UserType } from "../types/user";
 
 const initialState: UserType = {
     name: '',
+    email: '',
     token: '',
     error: '',
     isLoading: false,
@@ -14,9 +15,10 @@ const userSlice = createSlice({
     name: 'profile',
     initialState: initialState,
     reducers: {
-        setUser(state: UserType, action: PayloadAction<{ name: string, token: string }>) {
+        setUser(state: UserType, action: PayloadAction<{ email: string, name: string, token: string }>) {
             state.name = action.payload.name;
             state.token = action.payload.token;
+            state.email = action.payload.email;
         },
     },
     extraReducers: (builder) => {
@@ -27,6 +29,7 @@ const userSlice = createSlice({
         builder.addCase(LogoutUser.fulfilled, (state) => {
             state.isLoading = false;
 
+            state.email = '';
             state.name = '';
             state.token = '';
         });
@@ -35,6 +38,7 @@ const userSlice = createSlice({
             state.isLoading = false;
 
             state.name = '';
+            state.email = '';
             state.token = '';
 
             state.error = `CODE: ${action.error.code || 500}\n MESSAGE: ${action.error.message}\0`;
@@ -48,10 +52,12 @@ const userSlice = createSlice({
         builder.addCase(RegisterUser.fulfilled, (state, action) => {
             state.isLoading = false;
 
-            const { name, token } = action.payload as UserData;
+            const { name, email, token } = action.payload as UserData;
 
             state.name = name;
+            state.email = email;
             state.token = token;
+            state.error = '';
         });
 
         builder.addCase(RegisterUser.rejected, (state, action) => {
@@ -72,10 +78,12 @@ const userSlice = createSlice({
 
             if (!action) return;
 
-            const { name, token } = action.payload as UserData;
+            const { name, token, email } = action.payload as UserData;
 
             state.name = name;
+            state.email = email;
             state.token = token;
+            state.error = '';
         });
 
         builder.addCase(LoginUser.rejected, (state, action) => {
